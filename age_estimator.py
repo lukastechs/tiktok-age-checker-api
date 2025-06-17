@@ -1,11 +1,11 @@
 import re
-  from datetime import datetime
-  from typing import Optional, List, Dict, Any
-  import logging
+from datetime import datetime
+from typing import Optional, List, Dict, Any
+import logging
 
   logger = logging.getLogger(__name__)
 
-  class AgeCalculator:
+class AgeCalculator:
       @staticmethod
       def estimate_from_user_id(user_id: str) -> Optional[datetime]:
           """Estimate account creation date from user ID using TikTok ranges."""
