@@ -1,13 +1,13 @@
 import asyncio
-  import os
-  from fastapi import FastAPI, HTTPException
-  from pydantic import BaseModel
-  from TikTokApi import TikTokApi
-  from typing import Optional, List, Dict, Any
-  from age_estimator import AgeCalculator
-  import logging
+import os
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from TikTokApi import TikTokApi
+from typing import Optional, List, Dict, Any
+from age_estimator import AgeCalculator
+import logging
 
-  # Configure logging
+# Configure logging
   logging.basicConfig(level=logging.INFO)
   logger = logging.getLogger(__name__)
 
@@ -18,17 +18,17 @@ import asyncio
   )
 
   # Pydantic model for request
-  class UsernameRequest(BaseModel):
+class UsernameRequest(BaseModel):
       username: str
 
   # Pydantic model for estimation details
-  class EstimationDetail(BaseModel):
+class EstimationDetail(BaseModel):
       date: str
       confidence: int
       method: str
 
   # Pydantic model for response
-  class UserResponse(BaseModel):
+class UserResponse(BaseModel):
       username: str
       nickname: Optional[str] = None
       user_id: Optional[str] = None
@@ -143,5 +143,5 @@ import asyncio
       return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
   if __name__ == "__main__":
-      import uvicorn
+import uvicorn
       uvicorn.run(app, host="0.0.0.0", port=8000)
