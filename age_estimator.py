@@ -175,5 +175,5 @@ class AgeCalculator:
                      f"{' and ' + str(remaining_months) + ' month' + ('s' if remaining_months > 1 else '') if remaining_months > 0 else ''}")
           elif diff_months > 0:
              return f"{diff_months} month{'s' if diff_months > 1 else ''}"
-    else:
+          else:
              return f"{diff_days} day{'s' if diff_days > 1 else ''}"
