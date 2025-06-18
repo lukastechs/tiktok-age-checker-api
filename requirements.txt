@@ -4,4 +4,4 @@ playwright==1.40.0
 redis
 python-dotenv
 pydantic
-greenlet==3.0.3
+greenlet==3.0.1
