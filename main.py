@@ -66,7 +66,7 @@ class UserResponse(BaseModel):
 # Global TikTokApi instance
 tiktok_api = None
 
-@retry(stop_after_attempt=3, wait_exponential(multiplier=1, min=1, max=10))
+@retry(stop_after_attempt=3, wait=wait_exponential(multiplier=1, min=1, max=10))
 async def init_tiktok_api():
     ms_token = os.environ.get("MS_TOKEN")
     if not ms_token:
