@@ -1,6 +1,6 @@
 fastapi
 uvicorn
-playwright
+playwright==1.40.0
 redis
 python-dotenv
 pydantic
