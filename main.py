@@ -48,7 +48,7 @@ class UserResponse(BaseModel):
       error: Optional[str] = None
 
   # Initialize TikTokApi
- async def init_tiktok_api():
+async def init_tiktok_api():
       ms_token = os.environ.get("MS_TOKEN", None)  # Set in Render env vars
       api = TikTokApi.get_instance(custom_ms_token=ms_token)
       await api.create_sessions(num_sessions=1, headless=True, browser="chromium")
