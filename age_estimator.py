@@ -6,8 +6,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 class AgeCalculator:
-@staticmethod
-def estimate_from_user_id(user_id: str) -> Optional[datetime]:
+    @staticmethod
+    def estimate_from_user_id(user_id: str) -> Optional[datetime]:
           """Estimate account creation date from user ID using TikTok ranges."""
           try:
               user_id_int = int(user_id)
@@ -39,8 +39,8 @@ def estimate_from_user_id(user_id: str) -> Optional[datetime]:
               logger.error(f"User ID estimation error: {e}")
               return None
 
-@staticmethod
-def estimate_from_username(username: str) -> Optional[datetime]:
+    @staticmethod
+    def estimate_from_username(username: str) -> Optional[datetime]:
           """Estimate creation date from username patterns."""
           if not username:
               return None
@@ -56,8 +56,8 @@ def estimate_from_username(username: str) -> Optional[datetime]:
                   return date
           return None
 
-@staticmethod
-def estimate_from_metrics(followers: int, total_likes: int, verified: bool) -> Optional[datetime]:
+    @staticmethod
+    def estimate_from_metrics(followers: int, total_likes: int, verified: bool) -> Optional[datetime]:
           """Estimate creation date from profile metrics."""
           scores = []
 
@@ -87,14 +87,14 @@ def estimate_from_metrics(followers: int, total_likes: int, verified: bool) -> O
               return None
           return min(scores)
 
-@staticmethod
-def estimate_account_age(
+    @staticmethod
+    def estimate_account_age(
           user_id: str,
           username: str,
           followers: int = 0,
           total_likes: int = 0,
           verified: bool = False
-) -> Dict[str, Any]:
+    ) -> Dict[str, Any]:
           """Combine estimates with confidence scoring."""
           estimates = []
           confidence_scores = {'low': 1, 'medium': 2, 'high': 3}
@@ -155,13 +155,13 @@ def estimate_account_age(
               'all_estimates': estimates
           }
 
-@staticmethod
-def format_date(date: datetime) -> str:
+    @staticmethod
+    def format_date(date: datetime) -> str:
           """Format date as 'Month Day, Year'."""
           return date.strftime('%B %d, %Y')
 
-@staticmethod
- def calculate_age(created_date: datetime) -> str:
+    @staticmethod
+    def calculate_age(created_date: datetime) -> str:
           """Calculate account age in years, months, or days."""
           now = datetime.now()
           diff = now - created_date
