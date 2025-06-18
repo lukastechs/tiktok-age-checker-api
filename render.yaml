@@ -1,16 +1,16 @@
 services:
   - type: web
     name: tiktok-age-checker
-    runtime: docker
-    env: python
-    buildCommand: pip install -r requirements.txt && playwright install chromium
+    runtime: python
+    buildCommand: |
+      pip install -r requirements.txt && 
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 playwright install chromium && 
+      playwright install-deps
     startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
     envVars:
-  - key: REDIS_HOST
-    value: https://refined-mule-19659.upstash.io  # From Upstash dashboard
-  - key: REDIS_PORT
-    value: "6379"  # Default for Upstash (as string)
-  - key: REDIS_PASSWORD
-    value: AUzLAAIjcDFjNzY3MDY2YmQ1MDc0NWVmOTJmY2RkMGVmZWJmOWI0ZXAxMA  # From Upstash
-  - key: REDIS_SSL
-    value: "true"  # Required for Upstash
+      - key: REDIS_HOST
+        value: https://refined-mule-19659.upstash.io  # ← Fill this!
+      - key: REDIS_PORT
+        value: "6379"  # ← Fill this!
+      - key: REDIS_PASSWORD
+        value: AUzLAAIjcDFjNzY3MDY2YmQ1MDc0NWVmOTJmY2RkMGVmZWJmOWI0ZXAxMA  # ← Fill this!
