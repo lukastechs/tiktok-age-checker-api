@@ -9,7 +9,7 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
     envVars:
       - key: REDIS_HOST
-        value: https://refined-mule-19659.upstash.io  # ← Fill this!
+        value: redis-cli --tls -u redis://default:AUzLAAIjcDFjNzY3MDY2YmQ1MDc0NWVmOTJmY2RkMGVmZWJmOWI0ZXAxMA@refined-mule-19659.upstash.io:6379  # ← Fill this!
       - key: REDIS_PORT
         value: "6379"  # ← Fill this!
       - key: REDIS_PASSWORD
