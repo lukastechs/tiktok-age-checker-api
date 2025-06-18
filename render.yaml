@@ -6,9 +6,11 @@ services:
     buildCommand: pip install -r requirements.txt && playwright install chromium
     startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
     envVars:
-      - key: REDIS_HOST
-        value: your-redis-host
-      - key: REDIS_PORT
-        value: 12345
-      - key: REDIS_PASSWORD
-        value: your-redis-password
+  - key: REDIS_HOST
+    value: https://refined-mule-19659.upstash.io  # From Upstash dashboard
+  - key: REDIS_PORT
+    value: "6379"  # Default for Upstash (as string)
+  - key: REDIS_PASSWORD
+    value: AUzLAAIjcDFjNzY3MDY2YmQ1MDc0NWVmOTJmY2RkMGVmZWJmOWI0ZXAxMA  # From Upstash
+  - key: REDIS_SSL
+    value: "true"  # Required for Upstash
