@@ -8,16 +8,16 @@ from age_estimator import AgeCalculator
 import logging
 
 # Configure logging
-  logging.basicConfig(level=logging.INFO)
-  logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-  app = FastAPI(
+app = FastAPI(
       title="TikTok Age Checker API",
       description="Unofficial API to fetch TikTok user data and estimate account age. No affiliation with TikTok or ByteDance Ltd. By using this API, you agree to our Terms of Use.",
       version="1.0.0"
-  )
+)
 
-  # Pydantic model for request
+# Pydantic model for request
 class UsernameRequest(BaseModel):
       username: str
 
@@ -54,19 +54,19 @@ class UserResponse(BaseModel):
       await api.create_sessions(num_sessions=1, headless=True, browser="chromium")
       return api
 
-  @app.on_event("startup")
-  async def startup_event():
+@app.on_event("startup")
+async def startup_event():
       global tiktok_api
       tiktok_api = await init_tiktok_api()
       logger.info("TikTokApi initialized")
 
-  @app.on_event("shutdown")
-  async def shutdown_event():
+@app.on_event("shutdown")
+async def shutdown_event():
       await tiktok_api.close()
       logger.info("TikTokApi sessions closed")
 
-  @app.post("/age-check", response_model=UserResponse)
-  async def check_age(request: UsernameRequest):
+@app.post("/age-check", response_model=UserResponse)
+async def check_age(request: UsernameRequest):
       """
       Fetch TikTok user data and estimate account age for the given username.
       """
@@ -124,24 +124,24 @@ class UserResponse(BaseModel):
           logger.info(f"Successfully fetched data for {request.username}")
           return response
 
-      except Exception as e:
+    except Exception as e:
           logger.error(f"Error processing {request.username}: {str(e)}")
           raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
 
-  @app.get("/age-check/{username}", response_model=UserResponse)
-  async def check_age_get(username: str):
+@app.get("/age-check/{username}", response_model=UserResponse)
+async def check_age_get(username: str):
       """
       Fetch TikTok user data and estimate account age for the given username (GET method).
       """
       return await check_age(UsernameRequest(username=username))
 
-  @app.get("/health")
-  async def health_check():
+@app.get("/health")
+async def health_check():
       """
       Health check endpoint.
       """
       return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
-  if __name__ == "__main__":
-import uvicorn
+if __name__ == "__main__":
+      import uvicorn
       uvicorn.run(app, host="0.0.0.0", port=8000)
