@@ -49,10 +49,13 @@ class UserResponse(BaseModel):
 
   # Initialize TikTokApi
 async def init_tiktok_api():
-      ms_token = os.environ.get("MS_TOKEN", None)  # Set in Render env vars
-      api = TikTokApi.get_instance(custom_ms_token=ms_token)
-      await api.create_sessions(num_sessions=1, headless=True, browser="chromium")
-      return api
+      ms_token = os.environ.get("MS_TOKEN")  # Ensure MS_TOKEN is set in your environment
+      if not ms_token:
+        raise ValueError("MS_TOKEN environment variable is not set")
+
+async with TikTokApi() as api:
+        await api.create_sessions(ms_tokens=[ms_token], num_sessions=1, sleep_after=3)
+        return api  # Note: If you need to use api outside the context, see Step 2
 
 @app.on_event("startup")
 async def startup_event():
