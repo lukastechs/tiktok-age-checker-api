@@ -162,18 +162,18 @@ class AgeCalculator:
 
     @staticmethod
     def calculate_age(created_date: datetime) -> str:
-    """Calculate account age in years, months, or days."""
-    now = datetime.now()
-    diff = now - created_date
-    diff_days = diff.days
-    diff_months = diff_days // 30
-    diff_years = diff_months // 12
+          """Calculate account age in years, months, or days."""
+          now = datetime.now()
+          diff = now - created_date
+          diff_days = diff.days
+          diff_months = diff_days // 30
+          diff_years = diff_months // 12
 
-    if diff_years > 0:
-        remaining_months = diff_months % 12
-        return (f"{diff_years} year{'s' if diff_years > 1 else ''}"
-                f"{' and ' + str(remaining_months) + ' month' + ('s' if remaining_months > 1 else '') if remaining_months > 0 else ''}")
-    elif diff_months > 0:
-        return f"{diff_months} month{'s' if diff_months > 1 else ''}"
+          if diff_years > 0:
+             remaining_months = diff_months % 12
+             return (f"{diff_years} year{'s' if diff_years > 1 else ''}"
+                     f"{' and ' + str(remaining_months) + ' month' + ('s' if remaining_months > 1 else '') if remaining_months > 0 else ''}")
+          elif diff_months > 0:
+             return f"{diff_months} month{'s' if diff_months > 1 else ''}"
     else:
-        return f"{diff_days} day{'s' if diff_days > 1 else ''}"
+             return f"{diff_days} day{'s' if diff_days > 1 else ''}"
