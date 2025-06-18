@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.10.12
 
 # Install system dependencies first (as root)
 RUN apt-get update && \
