@@ -2,6 +2,7 @@ services:
   - type: web
     name: tiktok-age-checker
     runtime: python
+    pythonVersion: "3.10.12"
     buildCommand: |
       pip install -r requirements.txt && 
       PLAYWRIGHT_BROWSERS_PATH=/opt/render/.cache/ms-playwright playwright install chromium
