@@ -124,7 +124,7 @@ async def check_age(request: UsernameRequest):
           logger.info(f"Successfully fetched data for {request.username}")
           return response
 
-except Exception as e:
+      except Exception as e:
           logger.error(f"Error processing {request.username}: {str(e)}")
           raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
 
