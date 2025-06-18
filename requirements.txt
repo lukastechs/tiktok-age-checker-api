@@ -3,3 +3,4 @@ uvicorn
 playwright
 redis
 python-dotenv
+pydantic
